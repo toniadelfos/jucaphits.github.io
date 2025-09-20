@@ -1,169 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rádio Web Jucap Hits</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #141e30, #243b55);
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      text-align: center;
-      padding-top: 60px;
-      padding-bottom: 60px;
-    }
-    header img {
-      width: 150px;
-      max-width: 60%;
-      height: auto;
-      border-radius: 10px;
-      border: 3px solid #ffcc00;
-      margin-bottom: 10px;
-    }
-    header h1 {
-      font-size: 1.8rem;
-      margin-bottom: 5px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-    }
-    p { font-size: 1rem; margin-bottom: 15px; }
-    .player { margin: 20px 0; }
-    .play-btn {
-      background: #ffcc00;
-      color: #141e30;
-      border: none;
-      border-radius: 50px;
-      padding: 15px 40px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .play-btn:hover {
-      background: #ffd633;
-      transform: scale(1.05);
-    }
-    audio { display: none; }
-    .social {
-      margin: 20px 0;
-      display: flex;
-      gap: 25px;
-      justify-content: center;
-    }
-    .social a {
-      color: white;
-      font-size: 2rem;
-      text-decoration: none;
-      transition: transform 0.2s, color 0.2s;
-    }
-    .social a:hover {
-      color: #ffcc00;
-      transform: scale(1.2);
-    }
-    footer {
-      margin-top: 30px;
-      font-size: 0.8rem;
-      opacity: 0.8;
-    }
-    /* Menu fixo */
-    nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.7);
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      backdrop-filter: blur(5px);
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    nav a:hover {
-      color: #ffcc00;
-    }
-    nav span {
-      font-size: 1.5rem;
-    }
-    section {
-      padding: 20px;
-      width: 100%;
-      max-width: 600px;
-    }
-  </style>
-  <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎶 Rádio Jucap Hits</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #fff;
+            text-align: center;
+        }
+        header {
+            background: #222;
+            padding: 10px;
+        }
+        header img {
+            max-height: 80px;
+        }
+        main {
+            padding: 20px;
+        }
+        audio {
+            width: 100%;
+            margin-top: 20px;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #aaa;
+        }
+    </style>
 </head>
 <body>
-  <header id="home">
-    <img src="logo.jpg" alt="Logo Rádio Jucap Hits">
-    <h1>🎶 Rádio Web Jucap Hits 🎶</h1>
-    <p>O melhor som, 24h no ar!</p>
-  </header>
-
-  <section id="ouvir">
-    <div class="player">
-      <button class="play-btn" onclick="togglePlay()">▶️ Ouvir Agora</button>
-      <audio id="radio">
-        <source src="https://radio.radiojucaphits.qzz.io/listen/r%C3%A1dio_jucap_hits/radio"type="audio/mpeg">
-        Seu navegador não suporta áudio.
-      </audio>
-    </div>
-  </section>
-
-  <section id="redes">
-    <div class="social">
-      <a href="https://facebook.com" target="_blank"><span>📘</span>Facebook</a>
-      <a href="https://instagram.com" target="_blank"><span>📷</span>Instagram</a>
-      <a href="https://wa.me/seunumerowhatsapp" target="_blank"><span>💬</span>WhatsApp</a>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 Rádio Jucap Hits - Todos os direitos reservados
-  </footer>
-
-  <!-- Menu fixo -->
-  <nav>
-    <a href="#home"><span>🏠</span>Home</a>
-    <a href="#ouvir"><span>▶️</span>Ouvir</a>
-    <a href="#redes"><span>🌐</span>Redes</a>
-  </nav>
-
-  <script>
-    const player = document.getElementById('radio');
-    const btn = document.querySelector('.play-btn');
-    let isPlaying = false;
-
-    function togglePlay() {
-      if (isPlaying) {
-        player.pause();
-        btn.textContent = '▶️ Ouvir Agora';
-        isPlaying = false;
-      } else {
-        player.play();
-        btn.textContent = '⏸️ Pausar';
-        isPlaying = true;
-      }
-    }
-  </script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(() => console.log("Service Worker registrado com sucesso"))
-        .catch(err => console.error("Erro ao registrar o Service Worker:", err));
-    }
-  </script>
+    <header>
+        <img src="logo.jpg" alt="Rádio Jucap Hits">
+        <h1>Rádio Jucap Hits</h1>
+    </header>
+    <main>
+        <h2>🎵 Ouça ao vivo</h2>
+        <audio controls autoplay>
+            <source src="https://radio.radiojucaphits.qzz.io/listen/r%C3%A1dio_jucap_hits/radio" type="audio/mpeg">
+            Seu navegador não suporta áudio HTML5.
+        </audio>
+    </main>
+    <footer>
+        📡 Rádio Web Jucap Hits - O melhor som 24h no ar!
+    </footer>
+    <script src="service-worker.js"></script>
 </body>
 </html>
