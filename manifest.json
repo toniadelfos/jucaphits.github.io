@@ -1,0 +1,21 @@
+{
+  "name": "Rádio Web Jucap Hits",
+  "short_name": "Jucap Hits",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#141e30",
+  "theme_color": "#ffcc00",
+  "description": "O melhor som, 24h no ar!",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
